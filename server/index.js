@@ -14,27 +14,6 @@ const resolvers = require("./graphql/resolvers")
 async function startServer(){
     const app = express();
     const server = new ApolloServer({typeDefs, resolvers});
-    // const server = new ApolloServer({
-    //     typeDefs:`
-    //         type Destinations{
-    //             city: String!
-    //         }
-    //         type Hostels{
-    //             img: String!
-    //             city: String!
-    //         }
-    //         type Query{
-    //             getDestinations:[Destinations]
-    //             getHostels(city:String!): [Hostels]
-    //         }
-    //     `,
-    //     resolvers:{
-    //         Query:{
-    //             getDestinations: async()=>(await destinations.find()),
-    //             getHostels: async(parent,{city})=>(await hostels.find({city: city}))
-    //         }
-    //     }
-    // });
 
     app.use(bodyParser.json());
 
