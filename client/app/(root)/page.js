@@ -1,7 +1,10 @@
+"use client"
 import Citycard from '@/components/Citycard';
 import Navbar from '@/components/Navbar'
 import Image from 'next/image'
 import Link from 'next/link';
+import axios from 'axios';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 export default function Home() {
   const location = [
@@ -10,8 +13,24 @@ export default function Home() {
     {_id:14,city:"Jaipur", img:"/assets/delhi1.png"},
     {_id:11,city:"Banglore", img:"/assets/delhi2.png"},
   ];
+
+
+
+  // const fetchLocation = async(){
+  //   let location = await axios.fetch("localhost:8000/graphql/",{query:{getDestinations:{city}}});
+  // }
+
+
+  const client = new ApolloClient({
+    uri:"localhost:8000/graphql",
+    cache: new InMemoryCache()
+  })
+
+
+
+
   return (
-    <main className="flex justify-center">
+    <main className="flex justify-center" client={client}>
       <div className='grid h-full grid-cols-1 gap-4 p-4 cursor-pointer sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4
 '>
         {location.map((city)=>(
