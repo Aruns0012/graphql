@@ -6,7 +6,7 @@ const resolvers = {
 
 Query:{
     getDestinations: async()=>(await destinations.find()),
-    getHostels: async(parent,{city})=>(await hostels.find({city: city}))
+    getHostels: async(parent,{city})=>(await hostels.aggregate([{$match:{city:city}}]))
 }
 ,
 Mutation:{
